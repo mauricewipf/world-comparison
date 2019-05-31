@@ -8,7 +8,9 @@ export class AdminGuard implements CanActivate {
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request: Request = context.switchToHttp().getRequest();
     const headers: Headers = request.headers;
-    console.log('headers');
-    return true;
+    if (request.headers['role'] === 'admin') {
+      return true;
+    }
+    return false;
   }
 }

@@ -1,8 +1,6 @@
 import { HttpModule, Module } from '@nestjs/common';
 import { AdminController } from './admin/admin.controller';
 import { AdminService } from './admin/admin.service';
-import { APP_GUARD } from '@nestjs/core';
-import { AdminGuard } from './admin.guard';
 
 @Module({
   imports: [
@@ -10,10 +8,6 @@ import { AdminGuard } from './admin.guard';
   ],
   controllers: [AdminController],
   providers: [
-    {
-      provide: APP_GUARD,
-      useClass: AdminGuard,
-    },
     AdminService,
   ],
 })
