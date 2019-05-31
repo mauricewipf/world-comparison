@@ -7,8 +7,13 @@ export class AuthGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request: Request = context.switchToHttp().getRequest();
-    const headers: Headers = request.headers;
-    console.log(headers);
-    return true;
+    console.log(request.headers['role']);
+    if (request.headers['role'] !== undefined) {
+      console.log('Logged in');
+      return true;
+    } else {
+      console.log('Not logged in');
+      return false;
+    }
   }
 }
